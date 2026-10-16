@@ -46,13 +46,6 @@ Planned areas of documentation include:
 
 Each completed project will include its objective, methodology, supporting evidence, findings, and lessons learned.
 
-## Technical Documentation
-
-- [Architecture and Security Design](architecture.md)
-- [Physical and Virtual Infrastructure](infrastructure.md)
-- [Network Topology](network-topology.md)
-- [Security Monitoring and Detection Architecture](security-monitoring.md)
-
 ## Documentation Approach
 
 My goal is to document not only successful configurations and investigations, but also troubleshooting processes, limitations, and lessons learned.
