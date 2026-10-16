@@ -51,6 +51,7 @@ Each completed project will include its objective, methodology, supporting evide
 - [Architecture and Security Design](architecture.md)
 - [Physical and Virtual Infrastructure](infrastructure.md)
 - [Network Topology](network-topology.md)
+- [Security Monitoring and Detection Architecture](security-monitoring.md)
 
 ## Documentation Approach
 
