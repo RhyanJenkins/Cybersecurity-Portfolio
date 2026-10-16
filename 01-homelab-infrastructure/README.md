@@ -16,15 +16,6 @@ The homelab provides a controlled environment for developing practical cybersecu
 - Metasploitable
 - Tailscale
 
-## Technical Documentation
-
-- [Architecture and Security Design](architecture.md)
-- [Physical and Virtual Infrastructure](infrastructure.md)
-- [Network Topology](network-topology.md)
-- [Security Monitoring and Detection Architecture](security-monitoring.md)
-- [Infrastructure Validation and Evidence](validation-and-evidence.md)
-- [Project Evidence](evidence/README.md)
-
 ## Documentation
 
 Projects in this section will cover:
