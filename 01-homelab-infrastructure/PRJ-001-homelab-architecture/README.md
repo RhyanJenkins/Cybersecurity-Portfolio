@@ -113,6 +113,15 @@ Public documentation excludes sensitive credentials, private management endpoint
 
 Where appropriate, sanitized diagrams and example addressing will be used.
 
+## Technical Documentation
+
+- [Architecture and Security Design](architecture.md)
+- [Physical and Virtual Infrastructure](infrastructure.md)
+- [Network Topology](network-topology.md)
+- [Security Monitoring and Detection Architecture](security-monitoring.md)
+- [Infrastructure Validation and Evidence](validation-and-evidence.md)
+- [Project Evidence](evidence/README.md)
+
 ---
 
 **Project Status:** Active  
