@@ -33,6 +33,12 @@ Sanitized copies are used for public GitHub documentation.
 
 A sanitized copy is not represented as an unchanged original artifact.
 
+## Evidence Documentation Templates
+
+- [Evidence Record](evidence-record-template.md)
+- [Evidence Register](evidence-register-template.md)
+- [Chain of Custody](chain-of-custody-template.md)
+
 ## Current Status
 
 Evidence artifacts will be added after verification and sanitization.
