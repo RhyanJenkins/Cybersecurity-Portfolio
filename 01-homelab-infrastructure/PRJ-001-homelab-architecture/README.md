@@ -1,101 +1,163 @@
 # PRJ-001: Cybersecurity Homelab Architecture & Security Design
 
-**Project Type:** Infrastructure and Security Engineering  
-**Environment:** Self-hosted Cybersecurity homelab  
+**Project Type:** Infrastructure & Security Engineering  
+**Environment:** Self-Hosted Cybersecurity Homelab  
 **Status:** Active — Documentation in Progress
 
 ## 1. Project Overview
 
-This project documents the architecture, implementation, and security design of a virtualized cybersecurity homelab built for practical training in offensive security, defensive security, digital forensics, and incident response.
+This project documents the architecture, implementation, and security design of a virtualized cybersecurity homelab developed for hands-on training in offensive security, defensive security, digital forensics, and incident response.
 
-The environment uses Proxmox VE as its virtualization platform, with dedicated virtual machines supporting penetration testing, security monitoring, network defense, and Linux administration.
+The environment uses two Proxmox VE hosts to support centralized security monitoring, network defense, Linux administration, penetration testing, and controlled security investigations.
 
-The homelab provides a controlled environment for generating security events, investigating suspicious activity, evaluating security controls, and developing practical cybersecurity skills.
+Its primary purpose is to provide an environment where security controls can be configured, tested, monitored, and evaluated through repeatable technical exercises.
 
 ## 2. Project Objectives
 
-- Build and administer a virtualized cybersecurity environment.
-- Configure network segmentation and firewall policies.
-- Deploy centralized security monitoring.
-- Perform authorized penetration testing against intentionally vulnerable systems.
-- Investigate network traffic and security events.
-- Develop troubleshooting, documentation, and incident investigation skills.
+- Build and administer a virtualized cybersecurity infrastructure.
+- Implement network segmentation and firewall policies.
+- Deploy and integrate centralized security monitoring.
+- Perform authorized security testing against intentionally vulnerable systems.
+- Validate network connectivity and security boundaries.
+- Investigate firewall and endpoint security events.
+- Develop repeatable evidence collection and technical documentation practices.
 - Support future digital forensics and incident response exercises.
 
-## 3. Technologies Used
+## 3. Infrastructure Overview
 
-| Technology | Purpose |
+### Physical Hosts
+
+| Host | Platform | Primary Role |
+|---|---|---|
+| pve1 | HP ENVY Desktop | Centralized security monitoring |
+| pve2 | Dell Inspiron Laptop | Network security, testing, and lab virtualization |
+
+### Virtual Machine Placement
+
+| Virtual Machine | Host | Function |
+|---|---|---|
+| Wazuh SIEM | pve1 | Centralized security monitoring |
+| OPNsense | pve2 | Firewall, routing, and network segmentation |
+| Kali Linux | pve2 | Authorized penetration testing |
+| Debian Linux | pve2 | Linux administration and endpoint monitoring |
+| Metasploitable 2 | pve2 | Intentionally vulnerable testing target |
+
+These systems form a controlled environment for evaluating network activity, firewall behavior, endpoint security, and monitoring visibility.
+
+[View Physical & Virtual Infrastructure](infrastructure.md)
+
+## 4. Network Architecture & Security Design
+
+The homelab uses separate logical network zones to distinguish trusted infrastructure, security testing systems, and intentionally vulnerable targets.
+
+### Network Zones
+
+| Zone | Purpose |
 |---|---|
-| Proxmox VE | Virtualization and VM management |
-| OPNsense | Firewall, routing, and network security |
-| Wazuh | Centralized security monitoring and log analysis |
-| Kali Linux | Offensive security and testing |
-| Debian Linux | Linux administration and security monitoring |
-| Metasploitable | Intentionally vulnerable testing environment |
-| Tailscale | Secure remote administration |
-| nftables | Linux host firewall management |
+| Primary Network | Home infrastructure and selected management services |
+| Security Testing LAN | Kali Linux, Debian Linux, and security testing activities |
+| Vulnerable Network | Metasploitable 2 and controlled security targets |
 
-## 4. Infrastructure Architecture
+OPNsense provides routing and firewall enforcement between the security testing and vulnerable networks.
 
-The environment uses multiple Proxmox hosts to support cybersecurity training and experimentation.
+Previous testing verified that Kali-to-Metasploitable traffic traverses OPNsense and that the firewall records relevant network activity.
 
-Virtual machines are assigned roles based on their intended purpose, including network security, offensive testing, defensive monitoring, and vulnerable target systems.
+Connectivity testing also confirmed restrictions on access from the vulnerable environment to the primary home network and Internet. These results apply to the tested communication paths and do not establish that every possible path has been evaluated.
 
-OPNsense provides firewall and routing capabilities for the lab network.
+### Network Topology
 
-Wazuh provides centralized security monitoring and supports analysis of security events collected from integrated systems.
+A logical network topology diagram has been documented using Mermaid.
 
-Kali Linux is used to perform authorized testing against lab targets, while Debian provides a platform for Linux security configuration and investigation exercises.
+The diagram represents the virtual infrastructure, security zones, traffic paths, and monitoring relationships without exposing live management addresses.
 
-A sanitized network topology diagram will be added after the current infrastructure connections have been verified.
+[View Network Topology & Diagram](network-topology.md)
 
-## 5. Security Design
+## 5. Security Monitoring Architecture
 
-### Network Security
+Wazuh serves as the centralized security monitoring platform for the homelab.
 
-OPNsense is used to manage network traffic and implement firewall policies within the cybersecurity environment.
+Previously verified integrations include:
 
-The environment supports testing firewall behavior, observing network traffic, and investigating security events.
+- Debian Linux Wazuh agent
+- OPNsense Wazuh integration
 
-### Security Monitoring
+The environment supports investigation of security events associated with network activity, endpoint behavior, and system configuration.
 
-Wazuh is deployed as the security monitoring platform.
+OPNsense provides firewall-level visibility into routed traffic, while Wazuh provides centralized analysis of collected security events.
 
-The environment includes monitored systems and supports exercises involving log analysis, security investigations, and event correlation.
+An active monitoring integration does not guarantee that every generated firewall event will produce a searchable security alert.
 
-### Offensive Security
+[View Security Monitoring Documentation](security-monitoring.md)
 
-Kali Linux and intentionally vulnerable targets support controlled security testing.
+## 6. Offensive Security Environment
 
-Testing is performed within authorized lab environments for educational and defensive research purposes.
+Kali Linux provides tools for authorized reconnaissance, vulnerability assessment, and controlled security testing.
 
-### Remote Administration
+Metasploitable 2 serves as an intentionally vulnerable target within the segmented lab environment.
 
-Tailscale provides remote administrative connectivity to selected homelab systems without requiring direct public exposure of their management interfaces.
+Security exercises support the evaluation of:
 
-## 6. Validation and Testing
+- Network connectivity and exposed services
+- Firewall rule behavior
+- Network reconnaissance activity
+- Security monitoring visibility
+- Evidence collection and event correlation
 
-The environment has been used for:
+Testing is limited to authorized systems within the privately controlled environment.
 
-- Network connectivity testing
-- Nmap reconnaissance
-- SSH connectivity validation
-- Firewall rule testing
-- Wazuh agent connectivity checks
-- Controlled penetration testing
-- Security log investigation
+## 7. Validation & Testing
 
-Detailed results and supporting evidence will be documented in their respective project reports.
+The homelab has been used to validate infrastructure connectivity, security monitoring integrations, and selected network controls.
 
-## 7. Challenges and Lessons Learned
+### Documented Validation Activities
 
-Building the homelab has involved troubleshooting network connectivity, firewall behavior, VM configuration, monitoring integration, and security event visibility.
+| Area | Recorded Result |
+|---|---|
+| Proxmox management | Connectivity previously verified |
+| Kali-to-Metasploitable routing | Communication confirmed |
+| OPNsense firewall logging | Relevant traffic observed |
+| Vulnerable network restrictions | Tested restrictions previously confirmed |
+| Debian SSH connectivity | Confirmed |
+| Debian Wazuh agent | Previously confirmed active |
+| OPNsense Wazuh integration | Previously confirmed active |
+| FTP traffic visibility | Firewall activity observed; SIEM correlation unresolved |
 
-These challenges provide opportunities to develop systematic troubleshooting and investigation techniques.
+Historical test results and preserved evidence are distinguished from findings requiring additional validation.
 
-Specific issues, supporting evidence, resolutions, and unresolved limitations will be documented as separate technical case studies.
+[View Infrastructure Validation & Evidence](validation-and-evidence.md)
 
-## 8. Future Development
+## 8. Related Security Investigation
+
+### CASE-001 — FTP Traffic & SIEM Visibility Investigation
+
+**Status:** Investigation Ongoing
+
+This investigation examines the differences between firewall traffic visibility and Wazuh SIEM search results during controlled FTP testing against Metasploitable 2.
+
+Documented observations include:
+
+- TCP connectivity to the target's FTP port
+- Permitted traffic recorded in OPNsense firewall logs
+- No matching alert identified through the documented Wazuh search criteria
+- An unresolved question concerning the underlying event collection, indexing, detection, or search process
+
+The available evidence does not establish successful FTP backdoor exploitation or conclusively identify the cause of the missing search results.
+
+[View CASE-001 Investigation](../../03-incident-response/CASE-001-ftp-siem-visibility/)
+
+## 9. Challenges & Lessons Learned
+
+Building and maintaining the homelab has required troubleshooting across virtualization, networking, firewall configuration, security monitoring, and remote administration.
+
+Key lessons include:
+
+- Network connectivity and security monitoring must be validated separately.
+- Firewall logging and SIEM alert generation represent different stages of security visibility.
+- Infrastructure changes should be followed by repeatable validation.
+- Investigative conclusions must be supported by available evidence.
+- Unresolved technical findings should remain documented until sufficiently investigated.
+
+## 10. Future Development
 
 Planned improvements and exercises include:
 
@@ -103,27 +165,38 @@ Planned improvements and exercises include:
 - Incident timeline reconstruction
 - Network packet analysis
 - Advanced Wazuh detection engineering
-- IDS/IPS analysis
+- Suricata IDS/IPS integration and analysis
 - Linux security hardening
 - Security automation and scripting
+- Expanded validation and evidence preservation
 
-## 9. Documentation and Security
+These activities are planned and are not represented as completed implementations.
 
-Public documentation excludes sensitive credentials, private management endpoints, and configuration information that could unnecessarily expose the live environment.
+## 11. Evidence & Documentation Standards
 
-Where appropriate, sanitized diagrams and example addressing will be used.
+Public documentation prioritizes accuracy, repeatability, and responsible disclosure.
+
+Original evidence is retained privately, while selected sanitized artifacts may be published to support project findings.
+
+Live management addresses, credentials, and sensitive infrastructure identifiers are excluded from public records.
+
+[View Evidence Management Standards](evidence/README.md)
 
 ## Technical Documentation
 
-- [Architecture and Security Design](architecture.md)
-- [Physical and Virtual Infrastructure](infrastructure.md)
-- [Network Topology](network-topology.md)
-- [Security Monitoring and Detection Architecture](security-monitoring.md)
-- [Infrastructure Validation and Evidence](validation-and-evidence.md)
-- [Project Evidence](evidence/README.md)
+| Document | Description |
+|---|---|
+| [Architecture & Security Design](architecture.md) | Detailed infrastructure and security architecture |
+| [Physical & Virtual Infrastructure](infrastructure.md) | Hardware, virtual machines, and resource considerations |
+| [Network Topology](network-topology.md) | Logical diagram, network zones, and traffic relationships |
+| [Security Monitoring](security-monitoring.md) | Monitoring integrations and detection limitations |
+| [Validation & Evidence](validation-and-evidence.md) | Testing history, verified results, and evidence status |
+| [Project Evidence](evidence/README.md) | Evidence requirements and reusable documentation templates |
 
 ---
 
 **Project Status:** Active  
-**Documentation:** In progress  
-**Environment:** Authorized private cybersecurity homelab
+**Documentation:** In Progress  
+**Environment:** Authorized Private Cybersecurity Homelab
+
+[Return to Homelab Infrastructure](../README.md) | [Main Portfolio](../../README.md)
