@@ -208,22 +208,28 @@ These are investigative leads, not confirmed explanations.
 
 ## 9. Evidence Management
 
-The original EX-002 investigation evidence is maintained privately using structured evidence identifiers.
+The original EX-002 investigation evidence is maintained privately using structured evidence identifiers. Seven sanitized presentation copies are now published in the case-specific evidence folder.
 
-Collected material includes:
+The published evidence includes:
 
 - Wazuh agent-status screenshots
-- Existing OPNsense-related Wazuh alert results
+- Existing OPNsense-related Wazuh firewall alerts
 - OPNsense firewall traffic views
 - Kali TCP connectivity test output
-- Expanded OPNsense firewall event details
-- Wazuh search results showing no matches
+- Expanded OPNsense firewall event details, including EX-002-E06
+- The October 16 Wazuh Threat Hunting no-results search, EX-002-E07
+- A separate October 15 OPNsense firewall event for historical context
 
-Original screenshots are preserved separately from any copies prepared for public release.
+**Public Evidence Status:** Seven sanitized PNGs published and verified against the prepared public copies.
 
-**Public Evidence Status:** Sanitized artifacts have not yet been attached to this repository.
+[View EX-002 Evidence Index and Screenshots](evidence/README.md)
 
-Before publication, selected artifacts will be reviewed for sensitive infrastructure details, timestamps, source context, accuracy, and evidence integrity.
+Key artifacts:
+
+- [EX-002-E06 — OPNsense FTP Event Details](evidence/EX-002-S01-E06-opnsense-ftp-event-details-sanitized.png)
+- [EX-002-E07 — Wazuh No-Matching-Results Search](evidence/EX-002-S01-E07-wazuh-ftp-search-no-results-sanitized.png)
+
+The earlier October 15 Wazuh historical IP-search image is not part of this published selection. Original screenshots remain private; published copies include documented sanitization. Matching Git blob hashes confirm that the uploaded PNG files correspond to the prepared sanitized copies, not the integrity of the private source originals.
 
 ## 10. Lessons Learned
 
@@ -237,7 +243,8 @@ The investigation also reinforces the importance of preserving original evidence
 
 ## 11. Investigation Status and Next Steps
 
-**Status:** Open — Further Validation Required
+**Status:** Open — Further Validation Required  
+**Evidence Publication:** Seven sanitized EX-002 screenshots published; collection-path findings remain unresolved.
 
 The next investigative phase will focus on verifying the underlying OPNsense-to-Wazuh event collection path.
 
@@ -257,7 +264,7 @@ These validation activities have not yet been completed.
 **Related Exercise:** EX-002  
 **Investigation Status:** Open  
 **Root Cause:** Not Verified  
-**Public Evidence:** Pending Sanitization and Review  
+**Public Evidence:** Seven Sanitized Screenshots Published — [Evidence Index](evidence/README.md)  
 **Testing Scope:** Authorized Private Homelab
 
 [Return to Incident Response](../README.md) | [Main Portfolio](../../README.md)
