@@ -97,7 +97,7 @@ This case study distinguishes verified observations from investigative hypothese
 My professional experience spans enterprise IT support, identity administration, technical operations, and team leadership.
 
 **Federal Home Loan Bank of Chicago — Multi-Level Support Desk Technician**  
-*April 2025 – Present*
+*April 2025 – March 2026*
 
 - Lead technical training initiatives and develop structured onboarding resources.
 - Support identity governance, secure provisioning, and access management across more than 20 departments.
